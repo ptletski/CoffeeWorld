@@ -1,0 +1,34 @@
+[
+    {
+      "size": "small",
+      "coffee": "Decaf",
+      "condiments": [
+        "Soy"
+      ]
+    },
+    {
+      "size": "large",
+      "coffee": "Espresso",
+      "condiments" : [
+        "Mocha",
+        "Soy"
+      ]
+    }
+]
+
+[
+  {
+    "size": "large",
+    "coffee": "House Blend",
+    "condiments" : [
+      "Mocha",
+      "Soy",
+      "Whip",
+      "Steamed Milk"
+    ]
+  }
+]
+
+
+  0.8306993215246508   - 1
+  0.4444109681542676   - 2

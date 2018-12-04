@@ -1,0 +1,62 @@
+{
+      "coffees" : [{
+        "name" : "Dark Roast",
+        "prices" : {
+          "small" : 0.99,
+          "medium" : 1.59,
+          "large" : 2.49
+          }
+        }, {
+        "name" : "Decaf",
+        "prices" : {
+          "small" : 1.05,
+          "medium" : 1.69,
+          "large" : 2.69
+          }
+        }, {
+        "name" : "Espresso",
+        "prices" : {
+          "small" : 1.99,
+          "medium" : 2.59,
+          "large" : 3.49
+          }
+        }, {
+        "name" : "House Blend",
+        "prices" : {
+          "small" : 0.89,
+          "medium" : 1.49,
+          "large" : 2.39
+          }
+        } 
+      ],
+      "condiments" : [{
+        "name" : "Mocha",
+        "prices" : {
+          "small" : 0.20,
+          "medium" : 0.59,
+          "large" : 1.09
+          }
+        }, {
+        "name" : "Soy",
+        "prices" : {
+          "small" : 0.89,
+          "medium" : 1.49,
+          "large" : 2.39
+          }
+        }, {
+        "name" : "Steamed Milk",
+        "prices" : {
+          "small" : 0.15,
+          "medium" : 0.49,
+          "large" : 1.05
+          }
+        }, {
+        "name" : "Whip",
+        "prices" : {
+          "small" : 0.10,
+          "medium" : 0.49,
+          "large" : 1.09
+          }
+        }	
+      ]
+    }

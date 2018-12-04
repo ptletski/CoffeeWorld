@@ -1,0 +1,224 @@
+---
+swagger: "2.0"
+info:
+  description: "The Best Coffee API In The World"
+  version: "1.0.0"
+  title: "JavaLand"
+  termsOfService: "terms"
+  contact:
+    name: "Paul Tletski"
+    email: "ptletski@cox.net"
+  license:
+    name: "MIT"
+    url: "http://opensource.org/licenses/MIT"
+host: "localhost:3000"
+basePath: "/"
+tags:
+- name: "menu"
+  description: "The JavaLand beverage and condiment menu."
+- name: "order"
+  description: "Place and order, get status of your order."
+schemes:
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /menu:
+    get:
+      tags:
+      - "menu"
+      summary: "Retrieve the menu for JavaLand."
+      description: "Retrieve the menu for JavaLand. Includes beverages, condiments\
+        \ and prices by size."
+      operationId: "getMenu"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Menu delivered"
+          schema:
+            $ref: "#/definitions/Menu"
+      x-swagger-router-controller: "Menu"
+  /order:
+    post:
+      tags:
+      - "order"
+      summary: "Place your order from the menu."
+      operationId: "createOrder"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "order"
+        description: "Content of order."
+        required: false
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        201:
+          description: "Order created"
+          schema:
+            $ref: "#/definitions/Invoice"
+        400:
+          description: "Invalid order format"
+        500:
+          description: "Internal error"
+      x-swagger-router-controller: "Order"
+  /order/{orderId}:
+    get:
+      tags:
+      - "order"
+      summary: "Retrieve order and status."
+      operationId: "getOrder"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orderId"
+        in: "path"
+        description: "ID of order to be returned by service."
+        required: true
+        type: "number"
+        format: "float"
+      responses:
+        200:
+          description: "Order retrieved"
+          schema:
+            $ref: "#/definitions/Invoice"
+        404:
+          description: "Order not found"
+        500:
+          description: "Internal error"
+      x-swagger-router-controller: "Order"
+    delete:
+      tags:
+      - "order"
+      summary: "Cancel the order."
+      operationId: "deleteOrder"
+      parameters:
+      - name: "orderId"
+        in: "path"
+        description: "ID of order returned by service."
+        required: true
+        type: "number"
+        format: "float"
+      responses:
+        200:
+          description: "OK"
+        404:
+          description: "Order not found."
+      x-swagger-router-controller: "Order"
+definitions:
+  Size:
+    type: "string"
+    enum:
+    - "small"
+    - "medium"
+    - "large"
+  Beverage:
+    type: "object"
+    properties:
+      size:
+        $ref: "#/definitions/Size"
+      coffee:
+        type: "string"
+      condiments:
+        type: "array"
+        items:
+          type: "string"
+  Order:
+    type: "array"
+    items:
+      $ref: "#/definitions/Beverage"
+  Invoice:
+    type: "object"
+    properties:
+      order:
+        $ref: "#/definitions/Order"
+      price:
+        type: "number"
+        format: "float"
+      status:
+        type: "string"
+        enum:
+        - "waiting"
+        - "prepping"
+        - "ready"
+      id:
+        type: "number"
+        format: "float"
+    example:
+      price: 0.8008282
+      id: 6.0274563
+      order: ""
+      status: "waiting"
+  MenuEntryPrices:
+    properties:
+      small:
+        type: "number"
+        format: "float"
+      medium:
+        type: "number"
+        format: "float"
+      large:
+        type: "number"
+        format: "float"
+    example:
+      small: 0.8008282
+      large: 1.4658129
+      medium: 6.0274563
+  MenuEntry:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      prices:
+        $ref: "#/definitions/MenuEntryPrices"
+    example:
+      name: "name"
+      prices:
+        small: 0.8008282
+        large: 1.4658129
+        medium: 6.0274563
+  Menu:
+    type: "object"
+    properties:
+      coffees:
+        type: "array"
+        items:
+          $ref: "#/definitions/MenuEntry"
+      condiments:
+        type: "array"
+        items:
+          $ref: "#/definitions/MenuEntry"
+    example:
+      condiments:
+      - name: "name"
+        prices:
+          small: 0.8008282
+          large: 1.4658129
+          medium: 6.0274563
+      - name: "name"
+        prices:
+          small: 0.8008282
+          large: 1.4658129
+          medium: 6.0274563
+      coffees:
+      - name: "name"
+        prices:
+          small: 0.8008282
+          large: 1.4658129
+          medium: 6.0274563
+      - name: "name"
+        prices:
+          small: 0.8008282
+          large: 1.4658129
+          medium: 6.0274563
